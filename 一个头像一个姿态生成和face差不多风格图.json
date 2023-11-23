@@ -1,0 +1,1322 @@
+{
+  "last_node_id": 22,
+  "last_link_id": 29,
+  "nodes": [
+    {
+      "id": 4,
+      "type": "LoadImage",
+      "pos": [
+        440,
+        1000
+      ],
+      "size": [
+        315,
+        314.0000419616699
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            5
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "ComfyUI_temp_geadq_00003_ (8).png",
+        "image"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "CLIPVisionLoader",
+      "pos": [
+        837.1601391601565,
+        1130.780075683594
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "CLIP_VISION",
+          "type": "CLIP_VISION",
+          "links": [
+            4
+          ],
+          "shape": 3,
+          "label": "CLIP_VISION"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPVisionLoader"
+      },
+      "widgets_values": [
+        "SD 1.5 model.safetensors"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "IPAdapterModelLoader",
+      "pos": [
+        837.1601391601565,
+        990.7800756835939
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IPADAPTER",
+          "type": "IPADAPTER",
+          "links": [
+            3
+          ],
+          "shape": 3,
+          "label": "IPADAPTER"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "IPAdapterModelLoader"
+      },
+      "widgets_values": [
+        "ip-adapter-full-face_sd15.bin"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "IPAdapterApply",
+      "pos": [
+        1197.1601391601564,
+        990.7800756835939
+      ],
+      "size": {
+        "0": 315,
+        "1": 186
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "ipadapter",
+          "type": "IPADAPTER",
+          "link": 3,
+          "label": "ipadapter",
+          "slot_index": 0
+        },
+        {
+          "name": "clip_vision",
+          "type": "CLIP_VISION",
+          "link": 4,
+          "label": "clip_vision",
+          "slot_index": 1
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 5,
+          "label": "image"
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 6,
+          "label": "model"
+        },
+        {
+          "name": "attn_mask",
+          "type": "MASK",
+          "link": null,
+          "label": "attn_mask"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            7
+          ],
+          "shape": 3,
+          "label": "MODEL",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "IPAdapterApply"
+      },
+      "widgets_values": [
+        1,
+        0,
+        "original"
+      ]
+    },
+    {
+      "id": 12,
+      "type": "DWPreprocessor",
+      "pos": [
+        820,
+        1540
+      ],
+      "size": {
+        "0": 315,
+        "1": 178
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 10,
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            11
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DWPreprocessor"
+      },
+      "widgets_values": [
+        "enable",
+        "enable",
+        "enable",
+        512,
+        "yolox_l.onnx",
+        "dw-ll_ucoco_384.onnx"
+      ]
+    },
+    {
+      "id": 1,
+      "type": "ttN pipeLoader",
+      "pos": [
+        422.1009250488278,
+        150.53865063476547
+      ],
+      "size": [
+        400,
+        750
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model_override",
+          "type": "MODEL",
+          "link": null,
+          "label": "model_override"
+        },
+        {
+          "name": "clip_override",
+          "type": "CLIP",
+          "link": null,
+          "label": "clip_override"
+        },
+        {
+          "name": "optional_lora_stack",
+          "type": "LORA_STACK",
+          "link": null,
+          "label": "optional_lora_stack"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "pipe",
+          "type": "PIPE_LINE",
+          "links": [
+            1
+          ],
+          "shape": 3,
+          "label": "pipe",
+          "slot_index": 0
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            6
+          ],
+          "shape": 3,
+          "label": "model",
+          "slot_index": 1
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            12
+          ],
+          "shape": 3,
+          "label": "positive",
+          "slot_index": 2
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            13
+          ],
+          "shape": 3,
+          "label": "negative",
+          "slot_index": 3
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": null,
+          "shape": 3,
+          "label": "latent"
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "links": null,
+          "shape": 3,
+          "label": "vae"
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "links": null,
+          "shape": 3,
+          "label": "clip"
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "seed"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ttN pipeLoader"
+      },
+      "widgets_values": [
+        "亚洲真人majicmixRealistic_v7.safetensors",
+        "Default",
+        "vae-ft-mse-840000-ema-pruned.safetensors",
+        -1,
+        "None",
+        1,
+        1,
+        "None",
+        1,
+        1,
+        "None",
+        1,
+        1,
+        "shirt",
+        "none",
+        "comfy",
+        "",
+        "none",
+        "comfy",
+        512,
+        512,
+        1,
+        0,
+        "fixed"
+      ]
+    },
+    {
+      "id": 10,
+      "type": "ControlNetApplyAdvanced",
+      "pos": [
+        1160,
+        1380
+      ],
+      "size": {
+        "0": 315,
+        "1": 166
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 12,
+          "label": "positive"
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 13,
+          "label": "negative"
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": 9,
+          "label": "control_net",
+          "slot_index": 2
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 11,
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            14
+          ],
+          "shape": 3,
+          "label": "positive",
+          "slot_index": 0
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            15
+          ],
+          "shape": 3,
+          "label": "negative",
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetApplyAdvanced"
+      },
+      "widgets_values": [
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "type": "LoadImage",
+      "pos": [
+        440,
+        1400
+      ],
+      "size": [
+        315,
+        314.0000114440918
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            10,
+            17
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "1695313201098 (12).png",
+        "image"
+      ]
+    },
+    {
+      "id": 13,
+      "type": "ControlNetApplyAdvanced",
+      "pos": [
+        1740,
+        1380
+      ],
+      "size": {
+        "0": 315,
+        "1": 166
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 14,
+          "label": "positive"
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 15,
+          "label": "negative"
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": 16,
+          "label": "control_net",
+          "slot_index": 2
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 17,
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            18
+          ],
+          "shape": 3,
+          "label": "positive",
+          "slot_index": 0
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            19
+          ],
+          "shape": 3,
+          "label": "negative",
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetApplyAdvanced"
+      },
+      "widgets_values": [
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 14,
+      "type": "ControlNetLoader",
+      "pos": [
+        1340,
+        1620
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": [
+            16
+          ],
+          "shape": 3,
+          "label": "CONTROL_NET"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetLoader"
+      },
+      "widgets_values": [
+        "coadapter-sketch-sd15v1.pth"
+      ]
+    },
+    {
+      "id": 11,
+      "type": "ControlNetLoader",
+      "pos": [
+        800,
+        1400
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": [
+            9
+          ],
+          "shape": 3,
+          "label": "CONTROL_NET"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetLoader"
+      },
+      "widgets_values": [
+        "control_v11p_sd15_openpose.pth"
+      ]
+    },
+    {
+      "id": 15,
+      "type": "EmptyLatentImage",
+      "pos": [
+        1500,
+        540
+      ],
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            20
+          ],
+          "shape": 3,
+          "label": "LATENT"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        512,
+        768,
+        1
+      ]
+    },
+    {
+      "id": 2,
+      "type": "ttN pipeKSampler",
+      "pos": [
+        2360,
+        160
+      ],
+      "size": [
+        330,
+        578
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pipe",
+          "type": "PIPE_LINE",
+          "link": 1,
+          "label": "pipe"
+        },
+        {
+          "name": "optional_model",
+          "type": "MODEL",
+          "link": 7,
+          "label": "optional_model"
+        },
+        {
+          "name": "optional_positive",
+          "type": "CONDITIONING",
+          "link": 18,
+          "label": "optional_positive"
+        },
+        {
+          "name": "optional_negative",
+          "type": "CONDITIONING",
+          "link": 19,
+          "label": "optional_negative"
+        },
+        {
+          "name": "optional_latent",
+          "type": "LATENT",
+          "link": 20,
+          "label": "optional_latent",
+          "slot_index": 4
+        },
+        {
+          "name": "optional_vae",
+          "type": "VAE",
+          "link": null,
+          "label": "optional_vae"
+        },
+        {
+          "name": "optional_clip",
+          "type": "CLIP",
+          "link": null,
+          "label": "optional_clip"
+        },
+        {
+          "name": "xyPlot",
+          "type": "XYPLOT",
+          "link": null,
+          "label": "xyPlot"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "pipe",
+          "type": "PIPE_LINE",
+          "links": null,
+          "shape": 3,
+          "label": "pipe"
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": null,
+          "shape": 3,
+          "label": "model"
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "positive"
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "negative"
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            21
+          ],
+          "shape": 3,
+          "label": "latent",
+          "slot_index": 4
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "links": [
+            22,
+            25
+          ],
+          "shape": 3,
+          "label": "vae"
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "links": null,
+          "shape": 3,
+          "label": "clip"
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [],
+          "shape": 3,
+          "label": "image",
+          "slot_index": 7
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "seed"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ttN pipeKSampler"
+      },
+      "widgets_values": [
+        "None",
+        1,
+        1,
+        "None",
+        2,
+        "disabled",
+        "Sample",
+        20,
+        8,
+        "euler",
+        "normal",
+        1,
+        "Hide",
+        "ComfyUI",
+        355775230979787,
+        "randomize"
+      ]
+    },
+    {
+      "id": 17,
+      "type": "PreviewImage",
+      "pos": [
+        2760,
+        480
+      ],
+      "size": [
+        407.73677201704504,
+        617.9867241599343
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 23,
+          "label": "images"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 16,
+      "type": "VAEDecode",
+      "pos": [
+        2780,
+        60
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 21,
+          "label": "samples"
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 22,
+          "label": "vae",
+          "slot_index": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            23,
+            24
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 19,
+      "type": "PreviewImage",
+      "pos": [
+        3200,
+        480
+      ],
+      "size": [
+        455.31494140625,
+        600.4053192138672
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 26,
+          "label": "images"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 20,
+      "type": "FaceRestoreModelLoader",
+      "pos": [
+        3620,
+        0
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "FACERESTORE_MODEL",
+          "type": "FACERESTORE_MODEL",
+          "links": [
+            27
+          ],
+          "shape": 3,
+          "label": "FACERESTORE_MODEL",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FaceRestoreModelLoader"
+      },
+      "widgets_values": [
+        "codeformer.pth"
+      ]
+    },
+    {
+      "id": 18,
+      "type": "ttN hiresfixScale",
+      "pos": [
+        3240,
+        60
+      ],
+      "size": [
+        315,
+        366
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 24,
+          "label": "image"
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 25,
+          "label": "vae",
+          "slot_index": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": null,
+          "shape": 3,
+          "label": "latent"
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            26,
+            28
+          ],
+          "shape": 3,
+          "label": "image",
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "infoWidgetHidden": false,
+        "Node name for S&R": "ttN hiresfixScale"
+      },
+      "widgets_values": [
+        "RealESRGAN_x4.pth",
+        "Rescale based on model upscale image size ⬇",
+        true,
+        "nearest-exact",
+        "by percentage",
+        50,
+        1024,
+        1024,
+        1024,
+        "disabled",
+        "Hide",
+        "ComfyUI",
+        true
+      ]
+    },
+    {
+      "id": 21,
+      "type": "FaceRestoreCFWithModel",
+      "pos": [
+        3980,
+        80
+      ],
+      "size": {
+        "0": 315,
+        "1": 102
+      },
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "facerestore_model",
+          "type": "FACERESTORE_MODEL",
+          "link": 27,
+          "label": "facerestore_model"
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 28,
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            29
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FaceRestoreCFWithModel"
+      },
+      "widgets_values": [
+        "retinaface_resnet50",
+        0.5
+      ]
+    },
+    {
+      "id": 22,
+      "type": "PreviewImage",
+      "pos": [
+        3720,
+        480
+      ],
+      "size": [
+        409.21323242187464,
+        628.7180725097655
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 29,
+          "label": "images"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "PIPE_LINE"
+    ],
+    [
+      3,
+      7,
+      0,
+      6,
+      0,
+      "IPADAPTER"
+    ],
+    [
+      4,
+      8,
+      0,
+      6,
+      1,
+      "CLIP_VISION"
+    ],
+    [
+      5,
+      4,
+      0,
+      6,
+      2,
+      "IMAGE"
+    ],
+    [
+      6,
+      1,
+      1,
+      6,
+      3,
+      "MODEL"
+    ],
+    [
+      7,
+      6,
+      0,
+      2,
+      1,
+      "MODEL"
+    ],
+    [
+      9,
+      11,
+      0,
+      10,
+      2,
+      "CONTROL_NET"
+    ],
+    [
+      10,
+      5,
+      0,
+      12,
+      0,
+      "IMAGE"
+    ],
+    [
+      11,
+      12,
+      0,
+      10,
+      3,
+      "IMAGE"
+    ],
+    [
+      12,
+      1,
+      2,
+      10,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      13,
+      1,
+      3,
+      10,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      14,
+      10,
+      0,
+      13,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      15,
+      10,
+      1,
+      13,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      16,
+      14,
+      0,
+      13,
+      2,
+      "CONTROL_NET"
+    ],
+    [
+      17,
+      5,
+      0,
+      13,
+      3,
+      "IMAGE"
+    ],
+    [
+      18,
+      13,
+      0,
+      2,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      19,
+      13,
+      1,
+      2,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      20,
+      15,
+      0,
+      2,
+      4,
+      "LATENT"
+    ],
+    [
+      21,
+      2,
+      4,
+      16,
+      0,
+      "LATENT"
+    ],
+    [
+      22,
+      2,
+      5,
+      16,
+      1,
+      "VAE"
+    ],
+    [
+      23,
+      16,
+      0,
+      17,
+      0,
+      "IMAGE"
+    ],
+    [
+      24,
+      16,
+      0,
+      18,
+      0,
+      "IMAGE"
+    ],
+    [
+      25,
+      2,
+      5,
+      18,
+      1,
+      "VAE"
+    ],
+    [
+      26,
+      18,
+      1,
+      19,
+      0,
+      "IMAGE"
+    ],
+    [
+      27,
+      20,
+      0,
+      21,
+      0,
+      "FACERESTORE_MODEL"
+    ],
+    [
+      28,
+      18,
+      1,
+      21,
+      1,
+      "IMAGE"
+    ],
+    [
+      29,
+      21,
+      0,
+      22,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "Group",
+      "bounding": [
+        836,
+        875,
+        740,
+        382
+      ],
+      "color": "#3f789e",
+      "font_size": 24
+    },
+    {
+      "title": "Group",
+      "bounding": [
+        789,
+        1273,
+        1313,
+        543
+      ],
+      "color": "#3f789e",
+      "font_size": 24
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
