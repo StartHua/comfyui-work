@@ -1,0 +1,366 @@
+{
+  "1": {
+    "inputs": {
+      "ckpt_name": "dreamshaper_8.safetensors",
+      "config_name": "Default",
+      "vae_name": "Baked VAE",
+      "clip_skip": -1,
+      "lora1_name": "None",
+      "lora1_model_strength": 1,
+      "lora1_clip_strength": 1,
+      "lora2_name": "None",
+      "lora2_model_strength": 1,
+      "lora2_clip_strength": 1,
+      "lora3_name": "None",
+      "lora3_model_strength": 1,
+      "lora3_clip_strength": 1,
+      "positive": "Goods on table",
+      "positive_token_normalization": "none",
+      "positive_weight_interpretation": "comfy",
+      "negative": "Negative",
+      "negative_token_normalization": "none",
+      "negative_weight_interpretation": "comfy",
+      "empty_latent_width": 512,
+      "empty_latent_height": 512,
+      "batch_size": 1,
+      "seed": 0
+    },
+    "class_type": "ttN pipeLoader"
+  },
+  "2": {
+    "inputs": {
+      "lora_name": "lcm-lora-sdv1-5.safetensors",
+      "lora_model_strength": 1,
+      "lora_clip_strength": 1,
+      "upscale_method": "None",
+      "factor": 2,
+      "crop": "disabled",
+      "sampler_state": "Sample",
+      "steps": 4,
+      "cfg": 1.3,
+      "sampler_name": "lcm",
+      "scheduler": "normal",
+      "denoise": 1,
+      "image_output": "Hide",
+      "save_prefix": "ComfyUI",
+      "seed": 281933203211954,
+      "pipe": [
+        "1",
+        0
+      ],
+      "optional_model": [
+        "22",
+        0
+      ],
+      "optional_positive": [
+        "17",
+        0
+      ],
+      "optional_negative": [
+        "17",
+        1
+      ],
+      "optional_latent": [
+        "13",
+        0
+      ]
+    },
+    "class_type": "ttN pipeKSampler"
+  },
+  "3": {
+    "inputs": {
+      "images": [
+        "2",
+        7
+      ]
+    },
+    "class_type": "PreviewImage"
+  },
+  "4": {
+    "inputs": {
+      "image": "关于一打开小红书就失去9.9💰这件事_2_JOCO_来自小红书网页版 (1).jpg",
+      "upload": "image"
+    },
+    "class_type": "LoadImage"
+  },
+  "5": {
+    "inputs": {
+      "prompt": "object",
+      "threshold": 0.3,
+      "sam_model": [
+        "6",
+        0
+      ],
+      "grounding_dino_model": [
+        "7",
+        0
+      ],
+      "image": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "GroundingDinoSAMSegment (segment anything)"
+  },
+  "6": {
+    "inputs": {
+      "model_name": "sam_vit_b_01ec64.pth",
+      "device_mode": "Prefer GPU"
+    },
+    "class_type": "SAMLoader"
+  },
+  "7": {
+    "inputs": {
+      "model_name": "GroundingDINO_SwinT_OGC (694MB)"
+    },
+    "class_type": "GroundingDinoModelLoader (segment anything)"
+  },
+  "9": {
+    "inputs": {
+      "images": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "PreviewImage"
+  },
+  "10": {
+    "inputs": {
+      "mask": [
+        "5",
+        1
+      ]
+    },
+    "class_type": "MaskToImage"
+  },
+  "11": {
+    "inputs": {
+      "images": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "PreviewImage"
+  },
+  "12": {
+    "inputs": {
+      "mask": [
+        "5",
+        1
+      ]
+    },
+    "class_type": "InvertMask"
+  },
+  "13": {
+    "inputs": {
+      "grow_mask_by": 6,
+      "pixels": [
+        "5",
+        0
+      ],
+      "vae": [
+        "1",
+        5
+      ],
+      "mask": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "VAEEncodeForInpaint"
+  },
+  "14": {
+    "inputs": {
+      "strength": 1,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "1",
+        2
+      ],
+      "negative": [
+        "1",
+        3
+      ],
+      "control_net": [
+        "15",
+        0
+      ],
+      "image": [
+        "16",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced"
+  },
+  "15": {
+    "inputs": {
+      "control_net_name": "control_v11p_sd15_lineart.pth"
+    },
+    "class_type": "ControlNetLoader"
+  },
+  "16": {
+    "inputs": {
+      "coarse": "disable",
+      "resolution": 512,
+      "image": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "LineArtPreprocessor"
+  },
+  "17": {
+    "inputs": {
+      "strength": 1,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "14",
+        0
+      ],
+      "negative": [
+        "14",
+        1
+      ],
+      "control_net": [
+        "18",
+        0
+      ],
+      "image": [
+        "19",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced"
+  },
+  "18": {
+    "inputs": {
+      "control_net_name": "control_v11f1p_sd15_depth.pth"
+    },
+    "class_type": "ControlNetLoader"
+  },
+  "19": {
+    "inputs": {
+      "a": 6.283185307179586,
+      "bg_threshold": 0.1,
+      "resolution": 512,
+      "image": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "MiDaS-DepthMapPreprocessor"
+  },
+  "20": {
+    "inputs": {
+      "images": [
+        "16",
+        0
+      ]
+    },
+    "class_type": "PreviewImage"
+  },
+  "21": {
+    "inputs": {
+      "images": [
+        "19",
+        0
+      ]
+    },
+    "class_type": "PreviewImage"
+  },
+  "22": {
+    "inputs": {
+      "weight": 1,
+      "noise": 0,
+      "weight_type": "original",
+      "start_at": 0,
+      "end_at": 1,
+      "unfold_batch": false,
+      "ipadapter": [
+        "23",
+        0
+      ],
+      "clip_vision": [
+        "24",
+        0
+      ],
+      "image": [
+        "25",
+        0
+      ],
+      "model": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "IPAdapterApply"
+  },
+  "23": {
+    "inputs": {
+      "ipadapter_file": "ip-adapter-plus_sd15.bin"
+    },
+    "class_type": "IPAdapterModelLoader"
+  },
+  "24": {
+    "inputs": {
+      "clip_name": "SD 1.5 model.safetensors"
+    },
+    "class_type": "CLIPVisionLoader"
+  },
+  "25": {
+    "inputs": {
+      "image": "images (9).jpg",
+      "upload": "image"
+    },
+    "class_type": "LoadImage"
+  },
+  "26": {
+    "inputs": {
+      "samples": [
+        "2",
+        4
+      ],
+      "vae": [
+        "2",
+        5
+      ]
+    },
+    "class_type": "VAEDecode"
+  },
+  "27": {
+    "inputs": {
+      "model_name": "RealESRGAN_x4.pth",
+      "rescale_after_model": true,
+      "rescale_method": "nearest-exact",
+      "rescale": "by percentage",
+      "percent": 50,
+      "width": 1024,
+      "height": 1024,
+      "longer_side": 1024,
+      "crop": "disabled",
+      "image_output": "Hide",
+      "save_prefix": "ComfyUI",
+      "output_latent": true,
+      "image": [
+        "26",
+        0
+      ],
+      "vae": [
+        "2",
+        5
+      ]
+    },
+    "class_type": "ttN hiresfixScale"
+  },
+  "28": {
+    "inputs": {
+      "images": [
+        "27",
+        1
+      ]
+    },
+    "class_type": "PreviewImage"
+  }
+}
