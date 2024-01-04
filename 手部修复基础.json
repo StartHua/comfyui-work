@@ -1,0 +1,1300 @@
+{
+  "last_node_id": 17,
+  "last_link_id": 28,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "ttN pipeLoader",
+      "pos": [
+        -60,
+        40
+      ],
+      "size": [
+        400,
+        750
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model_override",
+          "type": "MODEL",
+          "link": null,
+          "label": "model_override"
+        },
+        {
+          "name": "clip_override",
+          "type": "CLIP",
+          "link": null,
+          "label": "clip_override"
+        },
+        {
+          "name": "optional_lora_stack",
+          "type": "LORA_STACK",
+          "link": null,
+          "label": "optional_lora_stack"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "pipe",
+          "type": "PIPE_LINE",
+          "links": [
+            1
+          ],
+          "shape": 3,
+          "label": "pipe",
+          "slot_index": 0
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": null,
+          "shape": 3,
+          "label": "model"
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "positive"
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "negative"
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": null,
+          "shape": 3,
+          "label": "latent"
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "links": null,
+          "shape": 3,
+          "label": "vae"
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "links": null,
+          "shape": 3,
+          "label": "clip"
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "seed"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ttN pipeLoader",
+        "ttNbgOverride": {
+          "color": "#223",
+          "bgcolor": "#335",
+          "groupcolor": "#88A"
+        }
+      },
+      "widgets_values": [
+        "absolutereality_v181.safetensors",
+        "Default",
+        "Baked VAE",
+        -1,
+        "None",
+        1,
+        1,
+        "None",
+        1,
+        1,
+        "None",
+        1,
+        1,
+        "A woman waving in the street",
+        "none",
+        "comfy",
+        "",
+        "none",
+        "comfy",
+        512,
+        512,
+        1,
+        0,
+        "fixed"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 11,
+      "type": "ControlNetLoader",
+      "pos": [
+        1860,
+        340
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": [
+            17
+          ],
+          "shape": 3,
+          "label": "CONTROL_NET"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetLoader",
+        "ttNbgOverride": {
+          "color": "#223",
+          "bgcolor": "#335",
+          "groupcolor": "#88A"
+        }
+      },
+      "widgets_values": [
+        "control_v11f1p_sd15_depth.pth"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 7,
+      "type": "ControlNetLoader",
+      "pos": [
+        1360,
+        340
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": [
+            7
+          ],
+          "shape": 3,
+          "label": "CONTROL_NET"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetLoader",
+        "ttNbgOverride": {
+          "color": "#223",
+          "bgcolor": "#335",
+          "groupcolor": "#88A"
+        }
+      },
+      "widgets_values": [
+        "control_sd15_inpaint_depth_hand_fp16.safetensors"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 6,
+      "type": "ControlNetApplyAdvanced",
+      "pos": [
+        1560,
+        520
+      ],
+      "size": {
+        "0": 315,
+        "1": 166
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 4,
+          "label": "positive"
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 5,
+          "label": "negative"
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": 7,
+          "label": "control_net",
+          "slot_index": 2
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 8,
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            15
+          ],
+          "shape": 3,
+          "label": "positive",
+          "slot_index": 0
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            16
+          ],
+          "shape": 3,
+          "label": "negative",
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetApplyAdvanced",
+        "ttNbgOverride": {
+          "color": "#223",
+          "bgcolor": "#335",
+          "groupcolor": "#88A"
+        }
+      },
+      "widgets_values": [
+        1,
+        0,
+        1
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 5,
+      "type": "ttN pipeKSampler",
+      "pos": [
+        2700,
+        140
+      ],
+      "size": [
+        330,
+        578
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pipe",
+          "type": "PIPE_LINE",
+          "link": 6,
+          "label": "pipe"
+        },
+        {
+          "name": "optional_model",
+          "type": "MODEL",
+          "link": null,
+          "label": "optional_model"
+        },
+        {
+          "name": "optional_positive",
+          "type": "CONDITIONING",
+          "link": 24,
+          "label": "optional_positive"
+        },
+        {
+          "name": "optional_negative",
+          "type": "CONDITIONING",
+          "link": 25,
+          "label": "optional_negative"
+        },
+        {
+          "name": "optional_latent",
+          "type": "LATENT",
+          "link": 11,
+          "label": "optional_latent"
+        },
+        {
+          "name": "optional_vae",
+          "type": "VAE",
+          "link": null,
+          "label": "optional_vae"
+        },
+        {
+          "name": "optional_clip",
+          "type": "CLIP",
+          "link": null,
+          "label": "optional_clip"
+        },
+        {
+          "name": "xyPlot",
+          "type": "XYPLOT",
+          "link": null,
+          "label": "xyPlot"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "pipe",
+          "type": "PIPE_LINE",
+          "links": null,
+          "shape": 3,
+          "label": "pipe"
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": null,
+          "shape": 3,
+          "label": "model"
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "positive"
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "negative"
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": null,
+          "shape": 3,
+          "label": "latent"
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "links": null,
+          "shape": 3,
+          "label": "vae"
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "links": null,
+          "shape": 3,
+          "label": "clip"
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            14
+          ],
+          "shape": 3,
+          "label": "image",
+          "slot_index": 7
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "seed"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ttN pipeKSampler",
+        "ttNbgOverride": {
+          "color": "#223",
+          "bgcolor": "#335",
+          "groupcolor": "#88A"
+        },
+        "ttNnodeVersion": "1.0.5"
+      },
+      "widgets_values": [
+        "None",
+        1,
+        1,
+        "None",
+        2,
+        "disabled",
+        "Sample",
+        20,
+        8,
+        "euler",
+        "normal",
+        1,
+        "Hide",
+        "ComfyUI",
+        534327844015041,
+        "randomize"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 8,
+      "type": "SetLatentNoiseMask",
+      "pos": [
+        1600,
+        180
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 9,
+          "label": "samples"
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 10,
+          "label": "mask"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            11,
+            21
+          ],
+          "shape": 3,
+          "label": "LATENT",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SetLatentNoiseMask",
+        "ttNbgOverride": {
+          "color": "#223",
+          "bgcolor": "#335",
+          "groupcolor": "#88A"
+        }
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 2,
+      "type": "ttN pipeKSampler",
+      "pos": [
+        720,
+        100
+      ],
+      "size": [
+        330,
+        578
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pipe",
+          "type": "PIPE_LINE",
+          "link": 1,
+          "label": "pipe"
+        },
+        {
+          "name": "optional_model",
+          "type": "MODEL",
+          "link": null,
+          "label": "optional_model"
+        },
+        {
+          "name": "optional_positive",
+          "type": "CONDITIONING",
+          "link": null,
+          "label": "optional_positive"
+        },
+        {
+          "name": "optional_negative",
+          "type": "CONDITIONING",
+          "link": null,
+          "label": "optional_negative"
+        },
+        {
+          "name": "optional_latent",
+          "type": "LATENT",
+          "link": null,
+          "label": "optional_latent"
+        },
+        {
+          "name": "optional_vae",
+          "type": "VAE",
+          "link": null,
+          "label": "optional_vae"
+        },
+        {
+          "name": "optional_clip",
+          "type": "CLIP",
+          "link": null,
+          "label": "optional_clip"
+        },
+        {
+          "name": "xyPlot",
+          "type": "XYPLOT",
+          "link": null,
+          "label": "xyPlot"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "pipe",
+          "type": "PIPE_LINE",
+          "links": [
+            6
+          ],
+          "shape": 3,
+          "label": "pipe",
+          "slot_index": 0
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": null,
+          "shape": 3,
+          "label": "model"
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            4
+          ],
+          "shape": 3,
+          "label": "positive",
+          "slot_index": 2
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            5
+          ],
+          "shape": 3,
+          "label": "negative",
+          "slot_index": 3
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            9
+          ],
+          "shape": 3,
+          "label": "latent",
+          "slot_index": 4
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "links": [
+            22
+          ],
+          "shape": 3,
+          "label": "vae",
+          "slot_index": 5
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "links": null,
+          "shape": 3,
+          "label": "clip"
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            2,
+            3
+          ],
+          "shape": 3,
+          "label": "image",
+          "slot_index": 7
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "seed"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ttN pipeKSampler",
+        "ttNbgOverride": {
+          "color": "#223",
+          "bgcolor": "#335",
+          "groupcolor": "#88A"
+        }
+      },
+      "widgets_values": [
+        "None",
+        1,
+        1,
+        "None",
+        2,
+        "disabled",
+        "Sample",
+        20,
+        8,
+        "euler",
+        "normal",
+        1,
+        "Hide",
+        "ComfyUI",
+        192936940639615,
+        "randomize"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 13,
+      "type": "Zoe-DepthMapPreprocessor",
+      "pos": [
+        2100,
+        740
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 23,
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            20
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Zoe-DepthMapPreprocessor",
+        "ttNbgOverride": {
+          "color": "#223",
+          "bgcolor": "#335",
+          "groupcolor": "#88A"
+        }
+      },
+      "widgets_values": [
+        512
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 3,
+      "type": "PreviewImage",
+      "pos": [
+        3140,
+        360
+      ],
+      "size": [
+        380,
+        480
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 2,
+          "label": "images"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage",
+        "ttNbgOverride": {
+          "color": "#223",
+          "bgcolor": "#335",
+          "groupcolor": "#88A"
+        }
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 4,
+      "type": "MeshGraphormer-DepthMapPreprocessor",
+      "pos": [
+        1120,
+        500
+      ],
+      "size": {
+        "0": 315,
+        "1": 102
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 3,
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            8,
+            26
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "INPAINTING_MASK",
+          "type": "MASK",
+          "links": [
+            10,
+            27
+          ],
+          "shape": 3,
+          "label": "INPAINTING_MASK",
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MeshGraphormer-DepthMapPreprocessor",
+        "ttNbgOverride": {
+          "color": "#223",
+          "bgcolor": "#335",
+          "groupcolor": "#88A"
+        }
+      },
+      "widgets_values": [
+        30,
+        512
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 16,
+      "type": "MaskToImage",
+      "pos": [
+        1654.1102905273438,
+        810.0722503662109
+      ],
+      "size": {
+        "0": 210,
+        "1": 26
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 27,
+          "label": "mask"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            28
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MaskToImage",
+        "ttNbgOverride": {
+          "color": "#223",
+          "bgcolor": "#335",
+          "groupcolor": "#88A"
+        }
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 17,
+      "type": "PreviewImage",
+      "pos": [
+        1600,
+        940
+      ],
+      "size": [
+        220,
+        240
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 28,
+          "label": "images"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage",
+        "ttNbgOverride": {
+          "color": "#223",
+          "bgcolor": "#335",
+          "groupcolor": "#88A"
+        }
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 15,
+      "type": "PreviewImage",
+      "pos": [
+        1280,
+        920
+      ],
+      "size": [
+        220,
+        240
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 26,
+          "label": "images"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage",
+        "ttNbgOverride": {
+          "color": "#223",
+          "bgcolor": "#335",
+          "groupcolor": "#88A"
+        }
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 10,
+      "type": "ControlNetApplyAdvanced",
+      "pos": [
+        2340,
+        500
+      ],
+      "size": {
+        "0": 315,
+        "1": 166
+      },
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 15,
+          "label": "positive"
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 16,
+          "label": "negative"
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": 17,
+          "label": "control_net",
+          "slot_index": 2
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 20,
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            24
+          ],
+          "shape": 3,
+          "label": "positive",
+          "slot_index": 0
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            25
+          ],
+          "shape": 3,
+          "label": "negative",
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetApplyAdvanced",
+        "ttNbgOverride": {
+          "color": "#223",
+          "bgcolor": "#335",
+          "groupcolor": "#88A"
+        }
+      },
+      "widgets_values": [
+        1,
+        0,
+        1
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 14,
+      "type": "VAEDecode",
+      "pos": [
+        1960,
+        560
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 21,
+          "label": "samples"
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 22,
+          "label": "vae"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            23
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode",
+        "ttNbgOverride": {
+          "color": "#223",
+          "bgcolor": "#335",
+          "groupcolor": "#88A"
+        }
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 9,
+      "type": "PreviewImage",
+      "pos": [
+        3620,
+        300
+      ],
+      "size": [
+        340,
+        480
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 14,
+          "label": "images"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage",
+        "ttNbgOverride": {
+          "color": "#223",
+          "bgcolor": "#335",
+          "groupcolor": "#88A"
+        }
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "PIPE_LINE"
+    ],
+    [
+      2,
+      2,
+      7,
+      3,
+      0,
+      "IMAGE"
+    ],
+    [
+      3,
+      2,
+      7,
+      4,
+      0,
+      "IMAGE"
+    ],
+    [
+      4,
+      2,
+      2,
+      6,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      5,
+      2,
+      3,
+      6,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      6,
+      2,
+      0,
+      5,
+      0,
+      "PIPE_LINE"
+    ],
+    [
+      7,
+      7,
+      0,
+      6,
+      2,
+      "CONTROL_NET"
+    ],
+    [
+      8,
+      4,
+      0,
+      6,
+      3,
+      "IMAGE"
+    ],
+    [
+      9,
+      2,
+      4,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      10,
+      4,
+      1,
+      8,
+      1,
+      "MASK"
+    ],
+    [
+      11,
+      8,
+      0,
+      5,
+      4,
+      "LATENT"
+    ],
+    [
+      14,
+      5,
+      7,
+      9,
+      0,
+      "IMAGE"
+    ],
+    [
+      15,
+      6,
+      0,
+      10,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      16,
+      6,
+      1,
+      10,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      17,
+      11,
+      0,
+      10,
+      2,
+      "CONTROL_NET"
+    ],
+    [
+      20,
+      13,
+      0,
+      10,
+      3,
+      "IMAGE"
+    ],
+    [
+      21,
+      8,
+      0,
+      14,
+      0,
+      "LATENT"
+    ],
+    [
+      22,
+      2,
+      5,
+      14,
+      1,
+      "VAE"
+    ],
+    [
+      23,
+      14,
+      0,
+      13,
+      0,
+      "IMAGE"
+    ],
+    [
+      24,
+      10,
+      0,
+      5,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      25,
+      10,
+      1,
+      5,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      26,
+      4,
+      0,
+      15,
+      0,
+      "IMAGE"
+    ],
+    [
+      27,
+      4,
+      1,
+      16,
+      0,
+      "MASK"
+    ],
+    [
+      28,
+      16,
+      0,
+      17,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
